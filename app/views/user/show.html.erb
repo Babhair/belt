@@ -1,0 +1,16 @@
+<h1>User#show</h1>
+<p>Find me in app/views/user/show.html.erb</p>
+
+<a href="/logout">Logout</a><br>
+
+welcome <%= current_user.fn %>
+
+<%= form_for @user do |f| %>
+  First Name: <%= f.text_field :fn %><br>
+  Last Name: <%= f.text_field :ln %><br>
+  Email: <%= f.text_field :email %><br>
+  City: <%= f.text_field :city %><br>
+  State: <%= f.text_field :state %><br>
+  
+  <%= f.submit 'Update Records' %><hr>
+<% end %>

@@ -2,7 +2,7 @@
 
 one:
   fn: MyString
-  ls: MyString
+  ln: MyString
   email: MyString
   city: MyString
   state: MyString
@@ -10,7 +10,7 @@ one:
 
 two:
   fn: MyString
-  ls: MyString
+  ln: MyString
   email: MyString
   city: MyString
   state: MyString
