@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  # get 'products/index'
+
+  # get 'products/show'
+
+  # get 'products/create'
+
+  resources :products
+
+  post 'products/buy' => 'products#buy'
+
+  post 'products/remove' => 'products#remove'
+
+
   resources :user
 
   root 'user#new'

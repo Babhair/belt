@@ -17,21 +17,8 @@ class UserController < ApplicationController
   	user.save
 
   session[:current_user] = user.id
-  redirect_to "/events"
+  redirect_to "/products"
 
-  end
-
-  def show
-    @user = User.find(session[:current_user])
-
-  end
-
-  def update
-    @user = User.find(session[:current_user])
-
-    @user.update(params.require(:user).permit(:fn, :ln, :email, :city, :state))
-
-    redirect_to '/events'
   end
 
   def login
@@ -44,7 +31,7 @@ class UserController < ApplicationController
   	end
 
   session[:current_user] = @user.id
-  redirect_to "/events"
+  redirect_to "/products"
 
   end
 

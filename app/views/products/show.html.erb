@@ -1,0 +1,71 @@
+<h1>Products#show</h1>
+<p>Find me in app/views/products/show.html.erb</p>
+
+<a href="/logout">Logout</a><br>
+<a href="/products/">Go to All Products</a><br>
+
+<h3>Hi <%= current_user.fn %></h3>
+
+<h3>Sell Product</h3>
+<form action='/products/' method='post'>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  Name: <input type='text' name='name' /><br>
+  Amount: <input type='text' name='amount' /><br>
+  <input type='submit' value='Sell' />
+</form>
+
+<h3>Your products that are not yet sold:</h3>
+<table>
+	<tr>
+		<td>**Product**</td>
+		<td>**Date Posted**</td>
+		<td>**Amount**</td>
+		<td>**Action**</td>
+	</tr>
+	<% @my_products.each do |p| %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= p.created_at %></td>
+		<td>$<%= p.amount %></td>
+		<td>
+			<form action="/products/remove" method="post">
+			  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			  <input type="hidden" name="product_id" value="<%= p.id %>">
+			  <input type="submit" name="remove" value="Remove">
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<h3>Sales</h3>
+<table>
+	<tr>
+		<td>**Product**</td>
+		<td>**Date Bought**</td>
+		<td>**Amount**</td>
+	</tr>
+	<% @sold.each do |p| %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= p.updated_at %></td>
+		<td>$<%= p.amount %></td>
+	</tr>
+	<% end %>
+</table>
+
+<h3>Purchases</h3>
+<table>
+	<tr>
+		<td>**Product**</td>
+		<td>**Date Bought**</td>
+		<td>**Amount**</td>
+	</tr>
+	<% @bought.each do |p| %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= p.updated_at %></td>
+		<td>$<%= p.amount %></td>
+	</tr>
+	<% end %>
+</table>

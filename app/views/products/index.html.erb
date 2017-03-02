@@ -1,0 +1,39 @@
+<h1>Products#index</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+
+<a href="/products/<%= current_user.id %>">Go to Dashboard</a><br>
+<a href="/logout">Logout</a><br>
+
+
+<h3>Hi <%= current_user.fn %></h3>
+
+<h3>All Products</h3>
+<table>
+	<tr>
+		<td>**Product**</td>
+		<td>**Seller**</td>
+		<td>**Date Posted**</td>
+		<td>**Amount**</td>
+		<td>**Action**</td>
+	</tr>
+	<% @product.each do |p| %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= p.user.fn %> <%= p.user.ln %></td>
+		<td><%= p.created_at %></td>
+		<td>$<%= p.amount %></td>
+		<td>
+			<form action="/products/buy" method="post">
+			  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			  <input type="hidden" name="name" value="<%= p.name %>">
+			  <input type="hidden" name="amount" value="<%= p.amount %>">
+			  <input type="hidden" name="user_id" value="<%= p.user_id %>">
+			  <input type="hidden" name="product_id" value="<%= p.id %>">
+			  
+			  <input type="submit" name="buy" value="Buy">
+				
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>
